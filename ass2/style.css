@@ -1,0 +1,125 @@
+/* Resetting some default styles */
+body, form {
+  color: rgb(250, 245, 245);
+    font-family: 'Arial', sans-serif;
+    background-image: url('images/background.jpg'); 
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+  }
+  h2{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+      }
+
+  body {
+    color: rgb(248, 245, 245);
+    font-family: 'Arial', sans-serif;
+    background-color: white;
+    /* background: rgb(0,0,0);
+    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(41,64,140,1) 30%, rgba(213,173,233,1) 100%); */
+  }
+
+
+  
+  /* Container styles */
+  form {
+    color: white;
+    background-color: white;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Form group styles */
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  /* Label styles */
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  /* Input styles */
+  input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; 
+  }
+  
+  /* Submit button styles */
+  .btn input {
+    color: black;
+    background: rgb(12, 170, 223);
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  
+  .btn input:hover {
+    background: rgb(243, 123, 123);
+
+  }
+  
+  /* Password toggle button styles */
+  #pass-toggle-btn {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+  
+  /* Eye icon styles */
+  .fa-eye-slash::before {
+    content: "\e0a1";
+  }
+  
+  .fa-eye::before {
+    content: "\e0a0";
+  }
+  
+  /* Styling for the icon */
+  [class^="fa-"]:before, [class*=" fa-"]:before {
+    font-family: 'FontAwesomeSolid';
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+  }
+  
+  /* Styling for error messages */
+  .error-message {
+    color: red;
+    font-size: 12px;
+  }
+  
+  /* Styles for the gender dropdown */
+.form-group.gender {
+    margin-bottom: 20px;
+  }
+  
+  
+  select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+

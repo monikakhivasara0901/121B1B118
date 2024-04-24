@@ -1,0 +1,82 @@
+Assignment 4
+  
+contact.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Search Employee Names</title>
+    <link href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+    $(function() {
+        var availableNames = [
+            "John Doe", "Jane Smith", "Mary Johnson", "James Brown", "Patricia White",
+            "Robert Jones", "Linda Miller", "William Davis", "Elizabeth Taylor", "Michael Wilson",
+            "Emily Moore", "Daniel Anderson", "Jennifer Thomas", "Joseph Jackson", "Susan Clark",
+            "David White", "Brian Brown", "Sarah Martin", "William Harris", "Jessica Thompson"
+        ];
+        $("#names").autocomplete({
+            source: availableNames
+        });
+    });
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-top: 50px;
+        }
+        form {
+            width: 80%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Search Employee Names</h2>
+
+<form method="post" action="contact.php">
+    <label for="names">Enter Employee Names (comma-separated):</label>
+    <input type="text" id="names" name="names" style="width:400px;">
+    <input type="submit" name="submit" value="Search">
+</form>
+
+</body>
+</html>
+
