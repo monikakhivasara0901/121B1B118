@@ -1,0 +1,36 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .notification {
+    display: none;
+    position: fixed;
+    top: 20px; /* Updated position */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .notification.show {
+    display: block;
+  }
+  
+  .notification .close {
+    float: right;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  
+  .notification p {
+    margin: 0;
+  }
+  
