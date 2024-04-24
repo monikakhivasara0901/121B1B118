@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+</head>
+<body>
+    <h2>Checkout</h2>
+    <form action="checkout.php" method="post">
+        <label for="shipping_address">Shipping Address:</label><br>
+        <textarea id="shipping_address" name="shipping_address" required></textarea><br><br>
+        <label for="payment_method">Payment Method:</label><br>
+        <select id="payment_method" name="payment_method" required>
+            <option value="credit_card">Credit Card</option>
+            <option value="paypal">PayPal</option>
+        </select><br><br>
+        <input type="submit" value="Place Order">
+    </form>
+</body>
+</html>
