@@ -1,4 +1,3 @@
-
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $names = explode(',', $_POST['names']);
@@ -12,14 +11,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $results = array();
     foreach ($names as $name) {
         $name = trim($name); // Remove any leading or trailing whitespace
-        $key = array_search($name, $employee_names);
+        $found = false;
 
-        if ($key !== false) {
-            $results[] = "Employee name '" . $name . "' found at index: " . $key;
-        } else {
+        // Perform case-insensitive search
+        foreach ($employee_names as $key => $employee) {
+            if (strcasecmp($name, $employee) === 0) {
+                $results[] = "Employee name '" . $name . "' found at index: " . $key;
+                $found = true;
+                break;
+            }
+        }
+
+        if (!$found) {
             $results[] = "Employee name '" . $name . "' not found in the list.";
         }
     }
+
     echo '<style>
         body {
             font-family: Arial, sans-serif;
@@ -46,5 +53,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
-
