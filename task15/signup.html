@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+    input[type="text"],
+    input[type="password"],
+    input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        box-sizing: border-box;
+    }
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    .error-message {
+        color: red;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Sign Up</h2>
+    <form id="signup-form" onsubmit="return validateForm()">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <label for="display-name">Display Name:</label>
+        <input type="text" id="display-name" name="display-name" required>
+        <input type="submit" value="Sign Up">
+        <div id="error-message" class="error-message"></div>
+    </form>
+</div>
+
+<script>
+    function validateForm() {
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        var displayName = document.getElementById('display-name').value;
+        var errorMessage = document.getElementById('error-message');
+
+        if (username.trim() === '' || password.trim() === '' || displayName.trim() === '') {
+            errorMessage.innerText = 'All fields are required.';
+            return false;
+        }
+
+        // You can add more complex validation logic here, like checking password strength, etc.
+
+        return true; // Form submission will proceed if validation passes
+    }
+</script>
+</body>
+</html>
