@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 400px;
+        }
+
+        .container h1 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], input[type="password"] {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus, input[type="password"]:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Facebook Registration Form</h1>
+        <form id="registrationForm">
+            <label for="txtfname">First Name</label>
+            <input type="text" name="txtfname" id="txtfname">
+            <div id="firstNameError" class="error"></div>
+
+            <label for="txtlname">Last Name</label>
+            <input type="text" name="txtlname" id="txtlname">
+            <div id="lastNameError" class="error"></div>
+
+            <label for="txtemail">Email</label>
+            <input type="text" name="txtemail" id="txtemail">
+            <div id="emailError" class="error"></div>
+
+            <label for="txtpwd">Password</label>
+            <input type="password" name="txtpwd" id="txtpwd">
+            <div id="passwordError" class="error"></div>
+            
+            <input type="submit" name="Submit" id="Submit" value="Submit">
+        </form>
+    </div>
+
+    <script>
+        var firstNameInput = document.getElementById("txtfname");
+        var lastNameInput = document.getElementById("txtlname");
+        var emailInput = document.getElementById("txtemail");
+        var passwordInput = document.getElementById("txtpwd");
+
+        firstNameInput.addEventListener("input", validateFirstName);
+        lastNameInput.addEventListener("input", validateLastName);
+        emailInput.addEventListener("input", validateEmail);
+        passwordInput.addEventListener("input", validatePassword);
+
+        function validateFirstName() {
+            var firstName = firstNameInput.value.trim();
+            var firstNameError = document.getElementById("firstNameError");
+
+            if (firstName === "") {
+                firstNameError.innerHTML = "First name is required";
+            } else {
+                firstNameError.innerHTML = "";
+            }
+        }
+
+        function validateLastName() {
+            var lastName = lastNameInput.value.trim();
+            var lastNameError = document.getElementById("lastNameError");
+
+            if (lastName === "") {
+                lastNameError.innerHTML = "Last name is required";
+            } else {
+                lastNameError.innerHTML = "";
+            }
+        }
+
+        function validateEmail() {
+            var email = emailInput.value.trim();
+            var emailError = document.getElementById("emailError");
+
+            if (email === "") {
+                emailError.innerHTML = "Email is required";
+            } else {
+                // Simple email validation using regex
+                var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    emailError.innerHTML = "Invalid email format";
+                } else {
+                    emailError.innerHTML = "";
+                }
+            }
+        }
+
+        function validatePassword() {
+            var password = passwordInput.value.trim();
+            var passwordError = document.getElementById("passwordError");
+
+            if (password === "") {
+                passwordError.innerHTML = "Password is required";
+            } else if (password.length < 6) {
+                passwordError.innerHTML = "Password must be at least 6 characters long";
+            } else {
+                passwordError.innerHTML = "";
+            }
+        }
+
+        document.getElementById("registrationForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the form from submitting
+
+            // Call all validation functions to ensure all fields are validated before submission
+            validateFirstName();
+            validateLastName();
+            validateEmail();
+            validatePassword();
+        });
+    </script>
+</body>
+</html>
