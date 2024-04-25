@@ -1,0 +1,19 @@
+CREATE DATABASE college_admission;
+
+USE college_admission;
+
+CREATE TABLE students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    phone VARCHAR(15) NOT NULL,
+    course_id INT,
+    FOREIGN KEY (course_id) REFERENCES courses(id)
+);
+
+CREATE TABLE courses (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    description TEXT,
+    capacity INT
+);
