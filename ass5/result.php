@@ -4,75 +4,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Area Result</title>
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(45deg, #3498db, #e74c3c);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-            color: black;
-        }
-
-        .result-container {
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            width: 100%;
-            padding: 30px;
-            box-sizing: border-box;
-            transition: transform 0.3s ease-in-out;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .result-container:hover {
-            transform: scale(1.02);
-        }
-
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
-            font-size: 28px;
-        }
-
-        p {
-            font-size: 18px;
-            margin-top: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="result-container">
+    <div class="container">
         <h1>Result</h1>
         <?php
-        // Get shape and area from the URL parameters
-        $selectedShape = isset($_GET['shape']) ? $_GET['shape'] : '';
-        $area = isset($_GET['area']) ? $_GET['area'] : '';
+        // Shape class
+        // Triangle class
+        class Shape {
+            protected $shapeName;
+            protected $area;
+        
+            public function __construct($shapeName) {
+                $this->shapeName = $shapeName;
+                $this->area = 0; // Initialize area as a numeric value
+            }
+        
+            public function calculateArea() {
+                // Implemented in subclasses
+            }
+        
+            public function displayResult() {
+                echo "<p>The area of the $this->shapeName is: $this->area square units</p>";
+            }
+        }
+class Triangle extends Shape {
+    private $base;
+    private $height;
 
-        // Display the result based on the selected shape
+    public function __construct($base, $height) {
+        parent::__construct('Triangle');
+        $this->base = floatval($base); // Convert to float
+        $this->height = floatval($height); // Convert to float
+        $this->calculateArea();
+    }
+
+    public function calculateArea() {
+        $this->area = 0.5 * $this->base * $this->height;
+    }
+}
+
+// Rectangle class
+class Rectangle extends Shape {
+    private $length;
+    private $breadth;
+
+    public function __construct($length, $breadth) {
+        parent::__construct('Rectangle');
+        $this->length = floatval($length); // Convert to float
+        $this->breadth = floatval($breadth); // Convert to float
+        $this->calculateArea();
+    }
+
+    public function calculateArea() {
+        $this->area = $this->length * $this->breadth;
+    }
+}
+
+// Circle class
+class Circle extends Shape {
+    private $radius;
+
+    public function __construct($radius) {
+        parent::__construct('Circle');
+        $this->radius = floatval($radius); // Convert to float
+        $this->calculateArea();
+    }
+
+    public function calculateArea() {
+        $this->area = 3.14 * $this->radius * $this->radius;
+    }
+}
+
+
+        // Get the selected shape from the form
+        $selectedShape = isset($_POST['shape']) ? $_POST['shape'] : '';
+
         switch ($selectedShape) {
             case 'Triangle':
-                echo "<p>The area of the triangle is: $area square units</p>";
-                break;
-
-            case 'Circle':
-                echo "<p>The area of the circle is: $area square units</p>";
+                $base = isset($_POST['triangleBase']) ? $_POST['triangleBase'] : 0;
+                $height = isset($_POST['triangleHeight']) ? $_POST['triangleHeight'] : 0;
+                $shape = new Triangle($base, $height);
                 break;
 
             case 'Rectangle':
-                echo "<p>The area of the rectangle is: $area square units</p>";
+                $length = isset($_POST['rectangleLength']) ? $_POST['rectangleLength'] : 0;
+                $breadth = isset($_POST['rectangleBreadth']) ? $_POST['rectangleBreadth'] : 0;
+                $shape = new Rectangle($length, $breadth);
+                break;
+
+            case 'Circle':
+                $radius = isset($_POST['circleRadius']) ? $_POST['circleRadius'] : 0;
+                $shape = new Circle($radius);
                 break;
 
             default:
                 echo "<p>Invalid shape selection</p>";
-                break;
+                exit();
         }
+
+        // Display the result
+        $shape->displayResult();
         ?>
     </div>
 </body>
