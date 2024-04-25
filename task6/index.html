@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .calculator {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .input {
+            width: calc(100% - 10px);
+            margin: 5px;
+            padding: 10px;
+            font-size: 18px;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+            text-align: right;
+        }
+
+        .btn {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            font-size: 18px;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+            background-color: #f1f1f1;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        .btn.equal {
+            background-color: #ff9800;
+            color: #ffffff;
+        }
+
+        .btn.clear {
+            background-color: #f44336;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="input" class="input" disabled>
+        <div>
+            <button class="btn" onclick="appendNumber('7')">7</button>
+            <button class="btn" onclick="appendNumber('8')">8</button>
+            <button class="btn" onclick="appendNumber('9')">9</button>
+            <button class="btn" onclick="appendOperator('/')">/</button>
+        </div>
+        <div>
+            <button class="btn" onclick="appendNumber('4')">4</button>
+            <button class="btn" onclick="appendNumber('5')">5</button>
+            <button class="btn" onclick="appendNumber('6')">6</button>
+            <button class="btn" onclick="appendOperator('*')">*</button>
+        </div>
+        <div>
+            <button class="btn" onclick="appendNumber('1')">1</button>
+            <button class="btn" onclick="appendNumber('2')">2</button>
+            <button class="btn" onclick="appendNumber('3')">3</button>
+            <button class="btn" onclick="appendOperator('-')">-</button>
+        </div>
+        <div>
+            <button class="btn" onclick="appendNumber('0')">0</button>
+            <button class="btn" onclick="appendOperator('.')">.</button>
+            <button class="btn clear" onclick="clearInput()">C</button>
+            <button class="btn" onclick="appendOperator('+')">+</button>
+        </div>
+        <div>
+            <button class="btn equal" onclick="calculate()">=</button>
+        </div>
+    </div>
+
+    <script>
+        function appendNumber(number) {
+            document.getElementById('input').value += number;
+        }
+
+        function appendOperator(operator) {
+            var input = document.getElementById('input').value;
+            var lastChar = input[input.length - 1];
+
+            // Avoid adding multiple operators consecutively
+            if (lastChar !== '+' && lastChar !== '-' && lastChar !== '*' && lastChar !== '/' && lastChar !== '.') {
+                document.getElementById('input').value += operator;
+            }
+        }
+
+        function clearInput() {
+            document.getElementById('input').value = '';
+        }
+
+        function calculate() {
+            var input = document.getElementById('input').value;
+
+            try {
+                var result = eval(input); // Using eval for simplicity, not recommended for production
+                document.getElementById('input').value = result;
+            } catch (error) {
+                document.getElementById('input').value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
